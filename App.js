@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View, Alert } from 'react-native'
 import Header from './components/Header'
 import TodoItem from './components/TodoItem'
 import AddTodoItem from './components/AddTodoItem'
@@ -27,12 +27,23 @@ export default function App() {
 	}
 
 	const addNewTodoItem = (text) => {
-		setTodos((prevItem) => {
-			return [
-				{ text, key: Math.random().toString() }, // not the ideal way to set the key
-				...prevItem,
-			]
-		}, console.log(todos))
+		if (text.length > 3) {
+			setTodos((prevItem) => {
+				return [
+					{ text, key: Math.random().toString() }, // not the ideal way to set the key
+					...prevItem,
+				]
+			}, console.log(todos))
+		} else {
+			Alert.alert('Oops!', 'Todo text should be more than 3 words!', [
+				{
+					text: 'Cancel',
+					onPress: () => console.log('Cancel Pressed'),
+					style: 'cancel',
+				},
+				{ text: 'OK', onPress: () => console.log('OK Pressed') },
+			])
+		}
 	}
 
 	return (
