@@ -11,6 +11,7 @@ import {
 import Header from './components/Header'
 import TodoItem from './components/TodoItem'
 import AddTodoItem from './components/AddTodoItem'
+import Sandbox from './components/Sandbox'
 
 export default function App() {
 	const [todos, setTodos] = useState([
@@ -55,27 +56,28 @@ export default function App() {
 	}
 
 	return (
-		<TouchableWithoutFeedback
-			onPress={() => {
-				console.log('dismissed keyboard')
-				Keyboard.dismiss()
-			}}>
-			<View style={styles.container}>
-				<Header />
-				<View style={styles.content}>
-					<AddTodoItem addTodoHandler={addNewTodoItem} />
-					<View style={styles.list}>
-						<FlatList
-							data={todos}
-							renderItem={({ item }) => (
-								<TodoItem item={item} pressHandler={pressHandler} />
-							)}
-							keyExtractor={(item) => item.key}
-						/>
-					</View>
-				</View>
-			</View>
-		</TouchableWithoutFeedback>
+		<Sandbox />
+		// <TouchableWithoutFeedback
+		// 	onPress={() => {
+		// 		console.log('dismissed keyboard')
+		// 		Keyboard.dismiss()
+		// 	}}>
+		// 	<View style={styles.container}>
+		// 		<Header />
+		// 		<View style={styles.content}>
+		// 			<AddTodoItem addTodoHandler={addNewTodoItem} />
+		// 			<View style={styles.list}>
+		// 				<FlatList
+		// 					data={todos}
+		// 					renderItem={({ item }) => (
+		// 						<TodoItem item={item} pressHandler={pressHandler} />
+		// 					)}
+		// 					keyExtractor={(item) => item.key}
+		// 				/>
+		// 			</View>
+		// 		</View>
+		// 	</View>
+		// </TouchableWithoutFeedback>
 	)
 }
 
